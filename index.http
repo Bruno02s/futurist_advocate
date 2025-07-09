@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Legal - Advocacia Futurista</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+        
+        :root {
+            --primary: #00f0ff;
+            --secondary: #7b2dff;
+            --dark: #0a0a1a;
+            --light: #f0f8ff;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+        }
+        
+        .orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(123, 45, 255, 0.2);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(123, 45, 255, 0.3);
+            border: 1px solid var(--secondary);
+        }
+        
+        .neon-border {
+            position: relative;
+        }
+        
+        .neon-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+        
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(0, 240, 255, 0.05) 0%, 
+                rgba(123, 45, 255, 0.05) 50%, 
+                rgba(0, 240, 255, 0.05) 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 240, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+        }
+    </style>
+</head>
+<body class="relative">
+    <div class="animated-bg"></div>
+    
+    <!-- Header/Navbar -->
+    <header class="fixed w-full z-50 backdrop-blur-md bg-black/50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-balance-scale text-white text-xl"></i>
+                    </div>
+                    <a href="#" class="orbitron text-2xl font-bold gradient-text">NEXUS LEGAL</a>
+                </div>
+                
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-white hover:text-cyan-400 transition duration-300">Início</a>
+                    <a href="#services" class="text-white hover:text-cyan-400 transition duration-300">Serviços</a>
+                    <a href="#about" class="text-white hover:text-cyan-400 transition duration-300">Sobre</a>
+                    <a href="#team" class="text-white hover:text-cyan-400 transition duration-300">Equipe</a>
+                    <a href="#contact" class="text-white hover:text-cyan-400 transition duration-300">Contato</a>
+                </nav>
+                
+                <button class="md:hidden text-white focus:outline-none" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden pt-4" id="mobile-menu">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-white hover:text-cyan-400 transition duration-300">Início</a>
+                    <a href="#services" class="text-white hover:text-cyan-400 transition duration-300">Serviços</a>
+                    <a href="#about" class="text-white hover:text-cyan-400 transition duration-300">Sobre</a>
+                    <a href="#team" class="text-white hover:text-cyan-400 transition duration-300">Equipe</a>
+                    <a href="#contact" class="text-white hover:text-cyan-400 transition duration-300">Contato</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-6 py-20">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="orbitron text-4xl md:text-6xl font-bold mb-6">
+                        <span class="gradient-text glow">Advocacia</span> <br>
+                        <span class="text-white">para o</span> <br>
+                        <span class="gradient-text glow">Futuro</span>
+                    </h1>
+                    <p class="text-gray-300 mb-8 text-lg leading-relaxed">
+                        Na Nexus Legal, combinamos expertise jurídica tradicional com tecnologia de ponta para oferecer soluções legais inovadoras e personalizadas para o mundo moderno.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition duration-300">
+                            Consulta Grátis
+                        </a>
+                        <a href="#services" class="px-8 py-3 border border-cyan-400 text-cyan-400 rounded-full font-medium hover:bg-cyan-400 hover:bg-opacity-10 transition duration-300">
+                            Nossos Serviços
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 relative">
+                    <div class="floating">
+                        <div class="relative neon-border rounded-2xl overflow-hidden w-full max-w-md mx-auto">
+                            <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Futuristic Law" class="w-full h-auto">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6">
+                                <h3 class="orbitron text-xl text-white mb-2">Inteligência Artificial Jurídica</h3>
+                                <p class="text-gray-300 text-sm">Nossa plataforma NexusAI analisa casos com precisão de 99.7%</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-purple-600 opacity-20 blur-xl"></div>
+                    <div class="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-cyan-500 opacity-20 blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Nossos Serviços</span> <span class="text-white">Exclusivos</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Oferecemos uma gama completa de serviços jurídicos, combinando tradição e inovação para atender às necessidades do século XXI.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 card-hover neon-border">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                    </div>
+                    <h3 class="orbitron text-xl text-white mb-3">NexusAI Consultoria</h3>
+                    <p class="text-gray-400 mb-4">
+                        Análise preditiva de casos utilizando inteligência artificial para determinar as melhores estratégias jurídicas.
+                    </p>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 flex items-center transition duration-300">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 card-hover neon-border">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-white text-2xl"></i>
+                    </div>
+                    <h3 class="orbitron text-xl text-white mb-3">Blockchain Legal</h3>
+                    <p class="text-gray-400 mb-4">
+                        Contratos inteligentes e proteção de ativos digitais com tecnologia blockchain imutável.
+                    </p>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 flex items-center transition duration-300">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 card-hover neon-border">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-vr-cardboard text-white text-2xl"></i>
+                    </div>
+                    <h3 class="orbitron text-xl text-white mb-3">Realidade Virtual em Tribunais</h3>
+                    <p class="text-gray-400 mb-4">
+                        Reconstrução de cenas em realidade virtual para apresentação de provas de forma imersiva.
+                    </p>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 flex items-center transition duration-300">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 card-hover neon-border">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h3 class="orbitron text-xl text-white mb-3">Direito Digital Global</h3>
+                    <p class="text-gray-400 mb-4">
+                        Atuação em casos transfronteiriços com foco em legislação digital internacional.
+                    </p>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 flex items-center transition duration-300">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 card-hover neon-border">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center mb-6">
+                        <i class="fas fa-dna text-white text-2xl"></i>
+                    </div>
+                    <h3 class="orbitron text-xl text-white mb-3">Biotecnologia Jurídica</h3>
+                    <p class="text-gray-400 mb-4">
+                        Assessoria em questões éticas e legais relacionadas a avanços em biotecnologia e genética.
+                    </p>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 flex items-center transition duration-300">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 card-hover neon-border">
+                    <div class="w-16 h-16 rounded-full bg-gradient-to-r from-purple-600 to-cyan-500 flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="orbitron text-xl text-white mb-3">Cybersegurança Legal</h3>
+                    <p class="text-gray-400 mb-4">
+                        Proteção contra crimes cibernéticos e compliance com regulamentações de proteção de dados.
+                    </p>
+                    <a href="#" class="text-cyan-400 hover:text-cyan-300 flex items-center transition duration-300">
+                        Saiba mais <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 relative">
+                    <div class="relative">
+                        <div class="w-full h-80 lg:h-96 bg-gradient-to-r from-cyan-500 to-purple-600 rounded-2xl overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Nexus Legal Office" class="w-full h-full object-cover mix-blend-overlay opacity-90">
+                        </div>
+                        <div class="absolute -bottom-10 -left-10 bg-gray-900 p-6 rounded-xl w-64 neon-border">
+                            <h4 class="orbitron text-lg text-white mb-2">+15 anos</h4>
+                            <p class="text-gray-400 text-sm">de experiência combinando direito e tecnologia</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-16">
+                    <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
+                        <span class="text-white">Sobre a</span> <span class="gradient-text">Nexus Legal</span>
+                    </h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        Fundada em 2010, a Nexus Legal surgiu da visão de que o direito precisava evoluir junto com a tecnologia. Nosso fundador, Dr. Eduardo Silva, percebeu que o futuro da advocacia estaria na interseção entre expertise jurídica tradicional e inovações tecnológicas.
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Hoje, somos referência nacional em advocacia futurista, com uma equipe multidisciplinar que inclui não apenas advogados especializados, mas também engenheiros de software, especialistas em IA e consultores em tecnologias emergentes.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-cyan-500 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-check text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white">+500</h4>
+                                <p class="text-gray-400 text-sm">Casos resolvidos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-purple-600 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-award text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white">27</h4>
+                                <p class="text-gray-400 text-sm">Prêmios jurídicos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-cyan-500 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white">98%</h4>
+                                <p class="text-gray-400 text-sm">Satisfação dos clientes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 rounded-full bg-purple-600 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-lightbulb text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white">15</h4>
+                                <p class="text-gray-400 text-sm">Patentes tecnológicas</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-full font-medium hover:opacity-90 transition duration-300 inline-flex items-center">
+                        Fale Conosco <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-purple-600 opacity-10 blur-3xl"></div>
+    </section>
+    
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-black bg-opacity-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                    <span class="text-white">Nossa Equipe</span> <span class="gradient-text">Multidisciplinar</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Advogados especialistas trabalhando lado a lado com profissionais de tecnologia para oferecer soluções jurídicas completas.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl overflow-hidden card-hover neon-border">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dr. Eduardo Silva" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="orbitron text-xl text-white">Dr. Eduardo Silva</h3>
+                            <p class="text-cyan-400 text-sm">Fundador & CEO</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-400 text-sm mb-4">
+                            Especialista em direito digital e tecnologia com mais de 20 anos de experiência. Líder visionário da Nexus Legal.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition duration-300">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl overflow-hidden card-hover neon-border">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dra. Ana Beatriz" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="orbitron text-xl text-white">Dra. Ana Beatriz</h3>
+                            <p class="text-purple-400 text-sm">Diretora de IA Jurídica</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-400 text-sm mb-4">
+                            PhD em Ciência da Computação e Direito. Responsável pelo desenvolvimento da plataforma NexusAI.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl overflow-hidden card-hover neon-border">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dr. Carlos Mendes" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="orbitron text-xl text-white">Dr. Carlos Mendes</h3>
+                            <p class="text-cyan-400 text-sm">Diretor de Blockchain</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-400 text-sm mb-4">
+                            Especialista em contratos inteligentes e direito cripto. Ex-desenvolvedor de smart contracts.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-cyan-400 transition duration-300">
+                                <i class="fab fa-bitcoin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl overflow-hidden card-hover neon-border">
+                    <div class="relative h-64">
+                        <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Dra. Fernanda Lima" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 p-6">
+                            <h3 class="orbitron text-xl text-white">Dra. Fernanda Lima</h3>
+                            <p class="text-purple-400 text-sm">Diretora de Biotecnologia</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-400 text-sm mb-4">
+                            Mestre em Bioética e Direito. Líder do departamento de questões jurídicas em biotecnologia.
+                        </p>
+                        <div class="flex space-x-3">
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="text-gray-400 hover:text-purple-400 transition duration-300">
+                                <i class="fas fa-flask"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-cyan-500 opacity-10 blur-3xl"></div>
+        <div class="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-purple-600 opacity-10 blur-3xl"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="orbitron text-3xl md:text-4xl font-bold mb-4">
+                    <span class="gradient-text">Depoimentos</span> <span class="text-white">de Clientes</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Veja o que nossos clientes dizem sobre nossa abordagem inovadora no campo jurídico.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 neon-border">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="orbitron text-white">Marcos Oliveira</h4>
+                            <p class="text-cyan-400 text-sm">CEO, TechStart Inc.</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic mb-4">
+                        "A Nexus Legal revolucionou nossa abordagem a questões legais. Sua plataforma de IA identificou riscos em contratos que nossa equipe interna havia perdido."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 neon-border">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="orbitron text-white">Juliana Santos</h4>
+                            <p class="text-purple-400 text-sm">Diretora, BioGen Labs</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic mb-4">
+                        "O conhecimento da Nexus em biotecnologia jurídica foi crucial para nossa startup. Eles anteciparam questões regulatórias que nos economizaram meses de atrasos."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 neon-border">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Client" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="orbitron text-white">Ricardo Ferreira</h4>
+                            <p class="text-cyan-400 text-sm">CTO, ChainSolutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 italic mb-4">
+                        "Como empresa de blockchain, precisávamos de advogados que realmente entendessem a tecnologia. A Nexus não só entende como ajuda a moldar o futuro regulatório."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black bg-opacity-70">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-12 lg:mb-0 lg:pr-12">
+                    <h2 class="orbitron text-3xl md:text-4xl font-bold mb-6">
+                        <span class="text-white">Entre em</span> <span class="gradient-text">Contato</span>
+                    </h2>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Pronto para levar sua estratégia legal para o próximo nível? Nossa equipe está preparada para ajudar com soluções personalizadas para suas necessidades.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-cyan-500 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white mb-1">Endereço</h4>
+                                <p class="text-gray-400">Av. Paulista, 1000 - 25º andar<br>São Paulo - SP, 01310-200</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-purple-600 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-purple-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white mb-1">Telefone</h4>
+                                <p class="text-gray-400">+55 (11) 1234-5678<br>Seg-Sex: 9h-18h</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-cyan-500 bg-opacity-20 flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-cyan-400"></i>
+                            </div>
+                            <div>
+                                <h4 class="orbitron text-white mb-1">Email</h4>
+                                <p class="text-gray-400">contato@nexuslegal.adv.br<br>suporte@nexuslegal.adv.br</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="orbitron text-white mb-4">Siga-nos</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-cyan-500 transition duration-300 flex items-center justify-center">
+                                <i class="fab fa-linkedin-in text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-purple-600 transition duration-300 flex items-center justify-center">
+                                <i class="fab fa-twitter text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-cyan-500 transition duration-300 flex items-center justify-center">
+                                <i class="fab fa-instagram text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-gray-800 hover:bg-purple-600 transition duration-300 flex items-center justify-center">
+                                <i class="fab fa-youtube text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-gray-900 bg-opacity-50 rounded-xl p-8 neon-border">
+                        <h3 class="orbitron text-2xl text-white mb-6">Envie sua Mensagem</h3>
+                        <form id="contactForm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-gray-400 mb-2">Nome Completo</label>
+                                    <input type="text" id="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-gray-400 mb-2">Email</label>
+                                    <input type="email" id="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="subject" class="block text-gray-400 mb-2">Assunto</label>
+                                <input type="text" id="subject" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300" required>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label for="message" class="block text-gray-400 mb-2">Mensagem</label>
+                                <textarea id="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 transition duration-300" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-lg font-medium hover:opacity-90 transition duration-300">
+                                Enviar Mensagem <i class="fas fa-paper-plane ml-2"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="py-12 bg-black bg-opacity-90">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-balance-scale text-white"></i>
+                    </div>
+                    <a href="#" class="orbitron text-xl font-bold gradient-text">NEXUS LEGAL</a>
+                </div>
+                
+                <div class="flex flex-col items-center md:items-end">
+                    <p class="text-gray-400 text-sm mb-4 text-center md:text-right">
+                        © 2023 Nexus Legal. Todos os direitos reservados.<br>
+                        Advocacia futurista para um mundo em transformação.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition duration-300">Termos de Uso</a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition duration-300">Política de Privacidade</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Floating Contact Button -->
+    <div class="fixed bottom-8 right-8 z-50">
+        <button class="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 text-white flex items-center justify-center shadow-xl pulse" id="floating-contact">
+            <i class="fas fa-comment-dots text-xl"></i>
+        </button>
+    </div>
+    
+    <!-- Contact Modal -->
+    <div class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center hidden" id="contact-modal">
+        <div class="bg-gray-900 rounded-xl p-8 max-w-md w-full mx-4 neon-border relative">
+            <button class="absolute top-4 right-4 text-gray-400 hover:text-white" id="close-modal">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <h3 class="orbitron text-2xl text-white mb-6">Chat NexusAI</h3>
+            <p class="text-gray-400 mb-6">
+                Nossa assistente virtual NexusAI está pronta para responder suas perguntas iniciais 24/7. Como podemos ajudar?
+            </p>
+            
+            <div class="bg-gray-800 rounded-lg p-4 mb-6 h-40 overflow-y-auto" id="chat-messages">
+                <div class="flex mb-3">
+                    <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-white text-sm"></i>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-3 max-w-xs">
+                        <p class="text-gray-300 text-sm">Olá! Sou a NexusAI, assistente virtual da Nexus Legal. Como posso te ajudar hoje?</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex">
+                <input type="text" placeholder="Digite sua mensagem..." class="flex-grow bg-gray-800 border border-gray-700 rounded-l-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-cyan-500 transition duration-300">
+                <button class="px-4 bg-cyan-500 text-white rounded-r-lg hover:bg-cyan-600 transition duration-300">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <a href="#home" class="fixed bottom-24 right-8 w-12 h-12 rounded-full bg-gray-800 text-white flex items-center justify-center shadow-xl z-40 hover:bg-cyan-500 transition duration-300" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Contact Modal
+        const floatingContact = document.getElementById('floating-contact');
+        const contactModal = document.getElementById('contact-modal');
+        const closeModal = document.getElementById('close-modal');
+        
+        floatingContact.addEventListener('click', () => {
+            contactModal.classList.remove('hidden');
+        });
+        
+        closeModal.addEventListener('click', () => {
+            contactModal.classList.add('hidden');
+        });
+        
+        // Back to Top Button Visibility
+        window.addEventListener('scroll', () => {
+            const backToTopButton = document.getElementById('back-to-top');
+            if (window.scrollY > 300) {
+                backToTopButton.classList.remove('hidden');
+            } else {
+                backToTopButton.classList.add('hidden');
+            }
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just show an alert
+            alert(`Obrigado, ${name}! Sua mensagem foi enviada com sucesso. Entraremos em contato em breve.`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Simple Chatbot Interaction
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = contactModal.querySelector('input');
+        const chatSendButton = contactModal.querySelector('button');
+        
+        chatSendButton.addEventListener('click', () => {
+            const userMessage = chatInput.value.trim();
+            if (userMessage) {
+                // Add user message
+                chatMessages.innerHTML += `
+                    <div class="flex justify-end mb-3">
+                        <div class="bg-cyan-500 rounded-lg p-3 max-w-xs">
+                            <p class="text-white text-sm">${userMessage}</p>
+                        </div>
+                    </div>
+                `;
+                
+                // Clear input
+                chatInput.value = '';
+                
+                // Simple bot response
+                setTimeout(() => {
+                    chatMessages.innerHTML += `
+                        <div class="flex mb-3">
+                            <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center mr-3">
+                                <i class="fas fa-robot text-white text-sm"></i>
+                            </div>
+                            <div class="bg-gray-700 rounded-lg p-3 max-w-xs">
+                                <p class="text-gray-300 text-sm">Entendido! Para melhor atendimento, recomendo que entre em contato com nossa equipe através do formulário principal. Posso te ajudar com algo mais?</p>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Scroll to bottom
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+                
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+        
+        // Allow pressing Enter to send message
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                chatSendButton.click();
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
